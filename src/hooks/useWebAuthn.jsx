@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { startRegistration, startAuthentication } from '@simplewebauthn/browser';
-import axios from 'axios';
+import axios from '@/api/axios';
 import { toast } from 'sonner';
 import secureLocalStorage from 'react-secure-storage';
 import useAuth from './useAuth';
@@ -12,7 +12,7 @@ const useWebAuthn = () => {
  const {setUser}=useAuth()
  const {subscribeToPush}=usePushNotification()
 
-
+// here this axios imported is our axios which has base url as our backend so no need to inxlude our url
   const initiateRegistration = async (userID) => {
 
     const subscription=await subscribeToPush(import.meta.env.VITE_PUSH_NOTIFICATION_PUBLIC_KEY)
@@ -20,7 +20,8 @@ const useWebAuthn = () => {
 
     try {
       console.log("registering user")
-      const registrationResponse = await axios.get(`${import.meta.env.BACKEND_BASE_URL}/webauth/generate-registration-options/${userID}`);
+      console.log(`/webauth/generate-registration-options/${userID}`);
+      const registrationResponse = await axios.get(`/webauth/generate-registration-options/${userID}`);
       console.log(registrationResponse)
       console.log("registering......")
 
@@ -32,7 +33,7 @@ const useWebAuthn = () => {
 
     
       const registrationVerificationResponse = await axios.post(
-        `${import.meta.env.BACKEND_BASE_URL}/webauth/verify-registration/${userID}`,
+        `/webauth/verify-registration/${userID}`,
         {
           clientRegistrationOptions,
           regUserSubscription: subscription
@@ -61,9 +62,7 @@ const useWebAuthn = () => {
     } catch (error) {
       if (error.name === 'InvalidStateError' || error.name === 'NotAllowedError') {
         setError('Error: Authenticator was probably already registered by user');
-        toast.warning('Device Authentication failed',{
-          description:'Device already registered or device failed to register try again',
-        })
+        toast.warning('Device already registered or device failed to register try again',)
 
       } else {
         setError('Error during registration:');
@@ -81,7 +80,7 @@ const useWebAuthn = () => {
 
   const initiateAuthentication = async (userID,loginDeviceInfo) => {
     try {
-      const authenticationResponse = await axios.get(`${import.meta.env.BACKEND_BASE_URL}/webauth/generate-authentication-options/${userID}`);
+      const authenticationResponse = await axios.get(`/webauth/generate-authentication-options/${userID}`);
       const authenticationOptions = authenticationResponse.data;
 
       console.log(authenticationOptions)
@@ -93,7 +92,7 @@ const useWebAuthn = () => {
       console.log("waiting for authentication from server")
 
       const verifyResponse = await axios.post(
-        `${import.meta.env.BACKEND_BASE_URL}/webauth/verify-authentication/${userID}`,
+        `/webauth/verify-authentication/${userID}`,
     {
         clientAuthenticationOptions,
         loginDeviceInfo
