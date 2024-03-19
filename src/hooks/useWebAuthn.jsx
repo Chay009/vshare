@@ -20,7 +20,7 @@ const useWebAuthn = () => {
 
     try {
       console.log("registering user")
-      const registrationResponse = await axios.get(`http://127.0.0.1:7000/webauth/generate-registration-options/${userID}`);
+      const registrationResponse = await axios.get(`${import.meta.env.BACKEND_BASE_URL}/webauth/generate-registration-options/${userID}`);
       console.log(registrationResponse)
       console.log("registering......")
 
@@ -32,7 +32,7 @@ const useWebAuthn = () => {
 
     
       const registrationVerificationResponse = await axios.post(
-        `http://127.0.0.1:7000/webauth/verify-registration/${userID}`,
+        `${import.meta.env.BACKEND_BASE_URL}/webauth/verify-registration/${userID}`,
         {
           clientRegistrationOptions,
           regUserSubscription: subscription
@@ -81,7 +81,7 @@ const useWebAuthn = () => {
 
   const initiateAuthentication = async (userID,loginDeviceInfo) => {
     try {
-      const authenticationResponse = await axios.get(`http://127.0.0.1:7000/webauth/generate-authentication-options/${userID}`);
+      const authenticationResponse = await axios.get(`${import.meta.env.BACKEND_BASE_URL}/webauth/generate-authentication-options/${userID}`);
       const authenticationOptions = authenticationResponse.data;
 
       console.log(authenticationOptions)
@@ -93,7 +93,7 @@ const useWebAuthn = () => {
       console.log("waiting for authentication from server")
 
       const verifyResponse = await axios.post(
-        `http://127.0.0.1:7000/webauth/verify-authentication/${userID}`,
+        `${import.meta.env.BACKEND_BASE_URL}/webauth/verify-authentication/${userID}`,
     {
         clientAuthenticationOptions,
         loginDeviceInfo
