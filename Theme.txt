@@ -1,0 +1,20 @@
+to make so me colors dark and light theme
+
+step 1 using css var create you choice of colors and paste in index.css just like theme
+
+like create a name then add color by hsl values then add them to tailwindconfig
+
+step 2 now with shadcn primary secondary accent destructive muted etc custom names and light and dark varints in index.css and tailwindconfig 
+define yours following step1 then use custom names in code
+use online tools like theme generator shadcn
+
+
+
+TO use themes only css variables yes will work 
+short cut names of any css property need to be added in tailwind config file
+ so always choose css variables
+
+
+
+ for manifest
+ a 192x192 image and 512x512 are bare min icons id is given to update easily maksable =app icon icons from icons-icons websites form factor narrow for mobile and wide for pc etc platform to show screen shots based on os when manifest updated change service worker version too design in canva then progressier to make image as icons and splashscreens ",

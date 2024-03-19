@@ -1,0 +1,95 @@
+{
+  "name": "Vshare",
+  "short_name": "Vshare",
+  "id": "/?source=pwa",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "background_color":"#101012",
+  "theme_color":"#0C2340",
+  "description": "a 192x192 image and 512x512 are bare min icons id is given to update easily maksable =app icon icons from icons-icons websites form factor narrow for mobile and wide for pc etc platform to show screen shots based on os when manifest updated change service worker version too design in canva then progressier to make image as icons and splashscreens ",
+
+  "icons": [
+    {
+      "src": "/icon_main.png",
+      "type": "image/png",
+      "sizes":"512x512",
+      "purpose": "maskable"
+      
+    },
+    {
+      "src": "/icon_main.png",
+      "type": "image/png",
+      "sizes":"512x512"
+      
+      
+    }
+  ],
+
+
+
+  "shortcuts":[
+    {
+      "name": "Search",
+      "short_name": "Search",
+      "description": "Search new posts,users..",
+      "url": "/explore",
+      "icons": [{ "src": "/shortcuts/search_shortcut.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Settings",
+      "short_name": "Settings",
+      "description": "View weather information for today",
+      "url": "/",
+      "icons": [{ "src": "/shortcuts/settings_shortcut.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "New Post",
+      "short_name": "New Post",
+      "description": "View weather information for today",
+      "url": "/create-post",
+      "icons": [{ "src": "/shortcuts/create_shortcut.png", "sizes": "192x192" }]
+    }
+   
+  ],
+
+  "screenshots": [
+  
+    {
+      "src": "/previews/apple_prev_1.png",
+      "type": "image/jpg",
+      
+      "form_factor": "wide",
+      "label": "Wonder Widgets",
+      "platform":"andriod"
+    },
+    {
+      "src": "/previews/apple_prev_2.png",
+      "type": "image/jpg",
+      
+      "form_factor": "wide",
+      "label": "Wonder Widgets",
+      "platform":""
+    },
+    {
+      "src": "/previews/apple_prev_3.png",
+      "type": "image/jpg",
+    
+      "form_factor": "wide",
+      "label": "Wonder Widgets",
+      "platform":""
+    },
+    {
+      "src": "/previews/apple_prev_4.png",
+      "type": "image/jpg",
+      
+      "form_factor": "wide",
+      "label": "Wonder Widgets",
+      "platform":""
+    }
+    
+  ],
+
+  "share_target":{}
+
+
+}
