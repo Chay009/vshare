@@ -4,6 +4,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 import { Toaster } from './ui/sonner';
 import { useMediaQuery } from 'react-responsive';
 import { useTheme } from '@/context/theme-provider';
+import { Analytics } from '@vercel/analytics/react';
 
 
 
@@ -27,7 +28,7 @@ const AppLayout = () => {
       
       <Toaster richColors theme={theme}  position={`${isDesktop?"bottom-right":"top-center"}`}/>
      
-
+      <Analytics/>
 
        {user.userAccessToken ? <Outlet/> :<Navigate to='/auth'/>}
     </div>
