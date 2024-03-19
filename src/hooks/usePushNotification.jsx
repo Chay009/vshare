@@ -73,7 +73,8 @@ const sendSubscriptionToServer = async (PUBLIC_KEY) => {
   const newSubscription=await subscribeToPush(PUBLIC_KEY)
   try {
     // Your backend endpoint to handle subscription
-    const backendUrl = 'http://127.0.0.1:7000/subscribe';
+    const backendUrl = `${import.meta.env.BACKEND_BASE_URL}/subscribe`;
+    // const backendUrl = 'http://127.0.0.1:7000/subscribe';
 
     // Send the subscription to your backend
     const response = await axios.post(backendUrl, {
