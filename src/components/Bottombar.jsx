@@ -38,7 +38,7 @@ const Bottombar = () => {
   ];
   return (
     <>
-      <section className="z-50 backdrop-filter backdrop-blur-md bg-opacity-70 flex-between w-full sticky bottom-0  bg-accent px-5 py-1 justify-center items-center md:hidden">
+      <section className="z-50 backdrop-filter backdrop-blur-md bg-opacity-70 flex-between w-full sticky bottom-0  bg-accent px-5 py-2 justify-center items-center md:hidden">
        
       
       {bottombarLinks.map((link) => {
@@ -52,7 +52,7 @@ const Bottombar = () => {
           to={link.route}
           className={` text-sm font-sans    ${
             isActive && "rounded-[8px] hover: bg-primary "
-          } flex-center flex-col gap-1 p-2 transition`}>
+          } flex-center flex-col gap-1 p-1 transition`}>
             {link.icon}
           
 

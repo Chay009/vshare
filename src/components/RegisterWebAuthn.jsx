@@ -143,10 +143,12 @@ const RegisterWebAuthn = () => {
           <DrawerTitle>Enhance Security!</DrawerTitle>
           <DrawerDescription>Register for more security. Note: The biometric data is not stored on the server; it is completed inside your device.</DrawerDescription>
         </DrawerHeader>
-        
+        <div>
+          
+        </div>
         {Notification.permission=="denied"
-        ?<p className='text-xs text-rose-500'>Allow notifications by resetting your browser settings </p>
-      :     <div className='flex gap-3 pt-3'> 
+        ?<p className='text-xs  text-rose-500'>Allow notifications by resetting your browser settings </p>
+      :     <div className='flex gap-3 pt-3 px-2'> 
 
       <Switch
      

@@ -30,7 +30,7 @@ const Topbar = () => {
 
   return (
     <>
-   <div className='md:hidden bg-muted top-0 sticky z-50 w-screen px-2 py-1 flex justify-around items-center'>
+   <div className='md:hidden bg-muted top-0 sticky z-50 w-screen p-3 flex justify-around items-center'>
  
 
   
@@ -61,9 +61,9 @@ const Topbar = () => {
  </div>}
 {isPwa&&!user.isAlreadyWebAuthnRegistered&& <div className='flex justify-center items-center'>
  <p 
- className='font-mono text-sm text-sky-500 animate-pulse'
+ className='font-mono text-sm text-sky-500 '
  >
-Enhance security by registering device now!!
+Improve security Now!
 </p>
 <Button
 variant='ghost'
@@ -73,7 +73,7 @@ className='text-teal-300'
   setWebAuthRegPromptShown(false)
  }}
 >
-<Fingerprint className='w-6  h-6'/>
+<Fingerprint className='w-6  h-6 animate-pulse'/>
 </Button>
  </div>}
    
