@@ -15,30 +15,30 @@ const Bottombar = () => {
 
   const bottombarLinks = [
     {
-      icon:<HomeIcon/>,
+      icon:<HomeIcon className='w-5 h-5'/>,
       route: "/",
       label: "Home",
     },
     {
-      icon:<SearchIcon/>,
+      icon:<SearchIcon className='w-5 h-5'/>,
       route: "/explore",
       label: "Explore",
     },
     {
-     icon:<img className='w-6' src={AddImage}  />,
+     icon:<img  className='w-5 h-5' src={AddImage}  />,
       route: "/create-post",
       label: "Create",
     },
   
     {
-      icon:<BookmarkPlusIcon/>,
+      icon:<BookmarkPlusIcon className='w-5 h-5'/>,
       route: "/saved",
       label: "Saved",
     },
   ];
   return (
     <>
-      <section className="z-50 backdrop-filter backdrop-blur-md bg-opacity-70 flex-between w-full sticky bottom-0  bg-accent px-5 py-2 justify-center items-center md:hidden">
+      <section className="z-50 backdrop-filter backdrop-blur-md bg-opacity-70 flex-between w-full sticky bottom-0  bg-accent px-5  justify-center items-center md:hidden">
        
       
       {bottombarLinks.map((link) => {
@@ -51,12 +51,12 @@ const Bottombar = () => {
           key={`bottombar-${link.label}`}
           to={link.route}
           className={` text-sm font-sans    ${
-            isActive && "rounded-[8px] hover: bg-primary "
-          } flex-center flex-col gap-1 p-1 transition`}>
+            isActive && "rounded-[8px] border hover:text-primary px-3 hover: border-t-4 hover: border-t-primary "
+          } flex-center flex-col gap-1 pt-2 mt-1 transition`}>
             {link.icon}
           
 
-            <p>{link.label}</p>
+            <p className='text-xs '>{link.label}</p>
           </NavLink>
         );
       })}

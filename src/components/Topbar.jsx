@@ -47,9 +47,9 @@ const Topbar = () => {
 
 {!isPwa&& <div className='flex justify-center items-center'>
  <p 
- className='font-mono text-sm text-sky-500 animate-pulse'
+ className='font-mono text-xs text-sky-500 animate-pulse'
  >
- Install app now to get native experience!
+ Install Vshare now!
 </p>
 <Button
  variant="ghost"
@@ -61,7 +61,7 @@ const Topbar = () => {
  </div>}
 {isPwa&&!user.isAlreadyWebAuthnRegistered&& <div className='flex justify-center items-center'>
  <p 
- className='font-mono text-sm text-sky-500 '
+ className='font-mono text-xs text-sky-500 '
  >
 Improve security Now!
 </p>
@@ -73,7 +73,7 @@ className='text-teal-300'
   setWebAuthRegPromptShown(false)
  }}
 >
-<Fingerprint className='w-6  h-6 animate-pulse'/>
+<Fingerprint className='w-5  h-5 animate-pulse'/>
 </Button>
  </div>}
    
