@@ -143,7 +143,35 @@ const RegisterWebAuthn = () => {
           <DrawerTitle>Enhance Security!</DrawerTitle>
           <DrawerDescription>Register for more security. Note: The biometric data is not stored on the server; it is completed inside your device.</DrawerDescription>
         </DrawerHeader>
+        
+        {Notification.permission=="denied"
+        ?<p className='text-xs text-rose-500'>Allow notifications by resetting your browser settings </p>
+      :     <div className='flex gap-3 pt-3'> 
+
+      <Switch
+     
+   
+      checked={Notification.permission=="granted"?true:false}
+      onCheckedChange={(checked)=>{
+        handleRequestPermission(checked)
+        console.log(isChecked)
+        console.log(Notification.permission)
+        
+      }
+      
+    }
+    
+    />
+    
+    <p className='text-sm font-inter'>I agree to recieve updates regarding my account security and recent logins</p>
+    </div>
+       
+       
+       }
         <DrawerFooter>
+
+
+          
        
           <Button 
        
