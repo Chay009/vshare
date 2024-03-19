@@ -148,7 +148,7 @@ const RegisterWebAuthn = () => {
         </div>
         {Notification.permission=="denied"
         ?<p className='text-xs  text-rose-500'>Allow notifications by resetting your browser settings </p>
-      :     <div className='flex gap-3 pt-3 px-2'> 
+      :     <div className='flex gap-3 pt-3 px-5'> 
 
       <Switch
      

@@ -50,9 +50,9 @@ const Bottombar = () => {
           
           key={`bottombar-${link.label}`}
           to={link.route}
-          className={` text-sm font-sans    ${
+          className={` text-xs font-sans   ${
             isActive && "rounded-[8px] border hover:text-primary px-3 hover: border-t-4 hover: border-t-primary "
-          } flex-center flex-col gap-1 pt-2 mt-1 transition`}>
+          } flex-center flex-col gap-1 pt-1 pb-1  transition`}>
             {link.icon}
           
 
