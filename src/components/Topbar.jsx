@@ -30,7 +30,7 @@ const Topbar = () => {
 
   return (
     <>
-   <div className='md:hidden bg-muted top-0 sticky z-50 w-screen p-3 flex justify-around items-center'>
+   <div className='md:hidden bg-muted top-0 sticky z-50 w-screen px-2 py-1 flex justify-around items-center'>
  
 
   
