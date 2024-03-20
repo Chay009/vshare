@@ -30,12 +30,13 @@ import useAuth from "@/hooks/useAuth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TagInput } from "./ui/tag-input";
 import * as Yup from 'yup';
-
+import { useQueryClient } from "@tanstack/react-query";
 
 
 
 const PostForm = ({editPostDetails}) => {
   
+  const queryClient = useQueryClient()
 
   const navigate = useNavigate();
   const {user}=useAuth();
@@ -169,7 +170,12 @@ setIsLoading(true);
       setIsLoading(false);
       // Handle the response from the server
       console.log('Server Response:', response);
-     
+
+      if(response.status==200){
+        queryClient.invalidateQueries({ queryKey: ["posts","infinite"]})
+        navigate('/');
+      
+      }
 
     
     } catch (error) {
