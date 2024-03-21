@@ -1,4 +1,4 @@
-import React, {  useState} from 'react'
+import React, {  useEffect, useRef, useState} from 'react'
 
 import { useForm } from "react-hook-form";
 import { Input } from '../ui/input';
@@ -19,7 +19,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import {zodResolver} from '@hookform/resolvers/zod'
 import * as z from 'zod';
 import { Link } from 'react-router-dom';
-import { ArrowBigLeftIcon, Fingerprint,Loader,Loader2,LockKeyhole } from 'lucide-react';
+import { ArrowBigLeftIcon, Fingerprint,Loader,Loader2,LockKeyhole, VerifiedIcon } from 'lucide-react';
 import secureLocalStorage from 'react-secure-storage';
 import { usePWAContext } from '@/context/PWAProvider';
 import { toast } from 'sonner';
@@ -30,7 +30,7 @@ const Password = ({loginEmail,loginID,isWebAuthnRegistered,setLoginEmail,loginDe
 
 
 
-  
+  const inputRef = useRef(null);
   const [isloading,setIsLoading] = useState(false)
 
   // this has to form global state 
@@ -43,6 +43,8 @@ const {initiateAuthentication,isAuthenticated}=useWebAuthn();
 const [authenticating,setAuthenticating]=useState(false);
 const [message,setMessage]=useState("")
 
+
+
 console.log(isAuthenticated)
     
     
@@ -51,7 +53,11 @@ console.log(isAuthenticated)
   const from = location.state?.from?.pathname || "/";
 
 
-
+  useEffect(()=>{
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  },[])
 
 
 const signInValidation = z.object({
@@ -81,15 +87,17 @@ const handleWebauthn=async()=>{
       const id= verifyResponse?.data?.foundUser._id;
       const isWebAuthnRegistered=verifyResponse?.data?.foundUser.isWebAuthnRegistered;
       const username= verifyResponse?.data?.foundUser.username;
+      const isVerified= verifyResponse?.data?.verification?.verified;
 
       
-      console.log(isWebAuthnRegistered)
+     
       
      
-        console.log('Authenticated..')
+       
+        
       
         
-        if(verifyResponse.status==200){
+        if(isVerified){
 
           setAuthenticating(false);
           
@@ -123,6 +131,7 @@ const handleWebauthn=async()=>{
      
 
     } catch (error) {
+      setAuthenticating(false);
       console.log(error)
     }
       
@@ -272,6 +281,7 @@ setLoginEmail("")
                               type="password"
                               className=""
                               {...field}
+                              ref={inputRef} 
                               />
                           </FormControl>
                           <FormMessage />
@@ -299,30 +309,45 @@ setLoginEmail("")
               Don&apos;t have an account?
              <Link to='/auth/register' className='underline text-teal-400'>register</Link>
             </p>
+
+{isWebAuthnRegistered &&isPwa &&  <div>
+                
+                <h2>OR</h2>
+<Button
+  onClick={handleWebauthn}
+  disabled={authenticating}
+  className="flex gap-2 w-full"
+>
+  {authenticating ? (<div className='flex gap-2'>
+    <div className='animate-spin'>
+      <Loader2 />
+    </div>
+    <p>Initiating device connection..</p>
+    </div>
+    
+  ) : isAuthenticated ? (
+    <div className='flex gap-2 '>
+      <VerifiedIcon />
+      <p>Verified</p>
+    </div>
+  ) : (
+    <div className='flex gap-2'>
+      <Fingerprint />
+      <p>Login with Device</p>
+    </div>
+  )}
+</Button>
+  </div> }
                   </form>
+ 
                 </div>
+
+                
+ 
               </Form>
 
              
 
-              {isWebAuthnRegistered &&isPwa &&  <div>
-                
-                <h2>OR</h2>
-                <Button
-                 onClick={handleWebauthn}
-                 disabled={authenticating}
-                 className="flex gap-2"
-                >
-                  {!authenticating?
-                  <Fingerprint/>:
-                  <div className='animate-spin'>
-
-                    <Loader2/>
-                  </div>
-                  }
-                <p>{!authenticating?"Login with Device":"waiting for device..."}</p>
-  </Button>
-  </div> } 
 
     </div>
 
