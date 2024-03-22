@@ -124,14 +124,14 @@ setSuccessMessage(response.data?.message)
          <ConfettiExplosion
       force={0.8}
       width={1600}
-      particleCount={120}
+      particleCount={60}
       duration={3000}
     
        />
          <ConfettiExplosion
       force={0.8}
       width={1600}
-      particleCount={120}
+      particleCount={60}
       duration={3000}
     
        />
@@ -268,7 +268,7 @@ disabled={loading}
 {isExploding && <ConfettiExplosion
       force={0.8}
       width={1600}
-      particleCount={120}
+      particleCount={60}
       duration={3000}
     
        />}

@@ -20,10 +20,10 @@ import {zodResolver} from '@hookform/resolvers/zod'
 import * as z from 'zod';
 import { Link } from 'react-router-dom';
 import { ArrowBigLeftIcon, Fingerprint,Loader,Loader2,LockKeyhole, VerifiedIcon } from 'lucide-react';
-import secureLocalStorage from 'react-secure-storage';
+
 import { usePWAContext } from '@/context/PWAProvider';
-import { toast } from 'sonner';
-import { Toast } from '../ui/toast';
+import { useMediaQuery } from 'react-responsive';
+
 
 const Password = ({loginEmail,loginID,isWebAuthnRegistered,setLoginEmail,loginDeviceInfo,username}) => {
 
@@ -39,7 +39,7 @@ const Password = ({loginEmail,loginID,isWebAuthnRegistered,setLoginEmail,loginDe
   console.log(isWebAuthnRegistered)
 console.log(loginDeviceInfo)
 
-const {initiateAuthentication,isAuthenticated}=useWebAuthn();
+const {initiateAuthentication,isAuthenticated,error}=useWebAuthn();
 const [authenticating,setAuthenticating]=useState(false);
 const [message,setMessage]=useState("")
 
@@ -65,6 +65,9 @@ const signInValidation = z.object({
   password: z.string().min(2,"min 2 letters")
 
 });
+
+
+const isDesktop = useMediaQuery({ query:"(min-width: 768px)"})
 
 const handleWebauthn=async()=>{
 
@@ -198,7 +201,9 @@ const handleWebauthn=async()=>{
  
 
       
-          
+          if(error){
+            setAuthenticating(false);
+          }
         
        
   
@@ -281,7 +286,7 @@ setLoginEmail("")
                               type="password"
                               className=""
                               {...field}
-                              ref={inputRef} 
+                              ref={isDesktop?inputRef:null} 
                               />
                           </FormControl>
                           <FormMessage />
