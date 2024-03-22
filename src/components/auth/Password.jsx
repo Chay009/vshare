@@ -125,7 +125,7 @@ const handleWebauthn=async()=>{
         
         console.log(user)
     
-    navigate(from,{replace:true})
+    navigate('/')
   
  
       
