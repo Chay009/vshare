@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL='https://vshare-backend.onrender.com';
+const BASE_URL=process.env.BACKEND_BASE_URL;
 
 
 
